@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hbi.core.demo.mapper.AgingLinesMapper">
+
+    <resultMap id="BaseResultMap" type="hbi.core.demo.dto.AgingLines" extends="com.hand.hap.mapper.StdMapper.STD">
+        <result column="AGING_LINE_ID" property="agingLineId" jdbcType="DECIMAL"/>
+        <result column="AGING_HEADER_ID" property="agingHeaderId" jdbcType="DECIMAL"/>
+        <result column="LINE_NUMBER" property="lineNumber" jdbcType="DECIMAL"/>
+        <result column="STAGE_NAME" property="stageName" jdbcType="VARCHAR"/>
+        <result column="AGING_FROM" property="agingFrom" jdbcType="DECIMAL"/>
+        <result column="AGING_TO" property="agingTo" jdbcType="DECIMAL"/>
+        <result column="CREATION_DATE" property="creationDate" jdbcType="DATE"/>
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="DATE"/>
+    </resultMap>
+
+    <insert id="insertAgingLines" parameterType="hbi.core.demo.dto.AgingLines">  
+    	INSERT INTO hcs_ca_aging_lines
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="agingHeaderId != null" >
+				AGING_HEADER_ID,
+			</if>
+			<if test="lineNumber != null" >
+				LINE_NUMBER,
+			</if>
+			<if test="stageName != null" >
+				STAGE_NAME,
+			</if>
+			<if test="agingFrom != null" >
+				AGING_FROM,
+			</if>
+			<if test="agingTo != null" >
+				AGING_TO,
+			</if>
+				CREATION_DATE,
+				LAST_UPDATE_DATE,
+		</trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	<if test="agingHeaderId != null" >
+				#{agingHeaderId,jdbcType=DECIMAL},
+			</if>
+			<if test="lineNumber != null" >
+				#{lineNumber,jdbcType=DECIMAL},
+			</if>
+			<if test="stageName != null" >
+				#{stageName,jdbcType=VARCHAR},
+			</if>
+			<if test="agingFrom != null" >
+				#{agingFrom,jdbcType=DECIMAL},
+			</if>
+			<if test="agingTo != null" >
+				#{agingTo,jdbcType=DECIMAL},
+			</if>
+				sysdate,sysdate,
+	    </trim>
+    </insert>
+    
+    <update id="updateAgingLines" parameterType="hbi.core.demo.dto.AgingLines" >
+	    update hcs_ca_aging_lines
+	    <set >
+			<if test="lineNumber != null" >
+				LINE_NUMBER = #{lineNumber,jdbcType=DECIMAL},
+			</if>
+			<if test="stageName != null" >
+				STAGE_NAME = #{stageName,jdbcType=VARCHAR},
+			</if>
+			<if test="agingFrom != null">
+				AGING_FROM = #{agingFrom,jdbcType=DECIMAL},
+			</if>
+			<if test="agingTo != null">
+				AGING_TO = #{agingTo,jdbcType=DECIMAL},
+			</if>
+	    </set>
+	    where LINE_NUMBER = #{lineNumber,jdbcType=DECIMAL}
+    </update>
+    
+    <delete id="deleteAgingLines" parameterType="hbi.core.demo.dto.AgingLines">
+    	delete from hcs_ca_aging_lines
+    	where AGING_HEADER_ID = #{agingHeaderId,jdbcType=DECIMAL}
+    	and LINE_NUMBER = #{lineNumber,jdbcType=DECIMAL}
+    </delete>
+
+</mapper>

@@ -1,0 +1,279 @@
+<#include "../include/header.html">
+<meta charset="UTF-8">
+<body>
+<div id="page-l" class="pull left" style="float:left;width=9%;"></div>
+	
+<div id="page-content">
+	<h3><b>账龄配置</b></h3>
+	<div id="page-r" style="width:90%;float:right;">
+	<div style="width:5%;height:400px;float:left;"></div>
+	<div style="width:5%;height:400px;float:right;"></div>
+	<div id="content" class="pull right" style="float:right;width:90%;">
+	<div id="page-form" class="pull right" style="width:90%;">
+	
+	<div id="query-form">
+		<div class="con-sm-12">
+			<div style="float:left">
+				<label style="float:left;margin-right:20px;">标题</label>
+				<input id="title-sel" type="text" data-bind="value:model.agingName" placeholder='请输入标题'  style="width:200px;"/>
+			</div>
+				<label style="margin-left:50px;margin-right:50px;"></label>
+				<input type="checkbox" id="enableFlag" data-bind="checked:model.enableFlag" style="margin-right:10px;">
+				<label style="margin-right:5px;">启用</label>		
+		</div>
+		<br>
+		<div class="con-sm-12" style="float:left">
+			<label style="float:left;margin-right:20px;" >说明</label>
+			<input type="text" id="description" data-bind="value:model.description" style="width:300px;">
+		</div>
+		<br>
+	</div>
+	
+		<div class="pull right" id="toolbar-btn">
+			<br><br>
+			<div class="col-sm-12">
+			<span class="btn btn-primary k-grid-add" id="addLine"  data-bind="click:addRowFunction" style="float:left;width:100px;" >新增行</span>
+			<span class="btn btn-primary k-grid-add" data-bind="click:cancleFunction" style="float:right;margin-left:10px;width:100px;" >取消</span>
+			<span class="btn btn-success k-grid-save-changes" id="save-btn" style="float:right;margin-right:10px;width:100px;" >保存</span>
+			<br><br>
+			</div>
+		</div>
+	</div>		
+	<div style="clear:both"></div>
+	<div style="clear:both">
+		<div id="grid"></div>
+	</div>
+	</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+var addLineCount = 0;
+
+var viewModel = kendo.observable({
+	model: {},
+	addRowFunction: function(){
+		$('#grid').data('kendoGrid').addRow();
+		addLineCount++;
+		addLineNumber();
+	},
+	cancleFunction: function(){
+		addLineCount = 0;
+    	viewModel.model.set("agingName",null);
+    	viewModel.model.set("enableFlag","");
+    	viewModel.model.set("description","");
+    	$('#grid').data('kendoGrid').cancelChanges();
+	}
+	
+});
+
+kendo.bind($('#page-content'),viewModel);
+
+var dataSource = new kendo.data.DataSource({
+    transport: {
+        read: {},
+        parameterMap: function (options, type) {
+            if (type !== 'read') {
+                return kendo.stringify(Hap.prepareSubmitParameter(options, type));
+            }
+        }
+    },
+    batch: true,
+    schema: {
+        data: 'rows',
+        total: 'total',
+        model: {
+        	fields:{
+            	lineNumber : {type: "long",editable:false},
+            	stageName : {type: "string",validation:{required: true}},
+            	agingFrom : {type: "long",
+            		validation:{ 
+            			agingFromValidation: function (input) {
+            				var data_grid = dataSource.data();
+            				len = data_grid.length;
+            				if(1 == len){
+                                if (input.is("[name='agingFrom']") && input.val() != 1) {
+                                	input.attr("data-agingFromValidation-msg", "第一个账龄应该从1开始。");
+                                	return false;
+                                }
+            				}else{
+                                if (input.is("[name='agingFrom']") && input.val() != parseInt(data_grid[len-2].agingTo)+1) {
+                                	input.attr("data-agingFromValidation-msg", "两个账龄字段间不该有间隔。");
+                                	
+                                	return false;
+                                }	
+            				}
+            				return true;
+            			}
+        			}
+            	},
+            	agingTo : {type: "long",
+            		agingToValidation: function (input) {
+        				var data_grid = dataSource.data();
+        				len = data_grid.length;
+        				
+                        if (input.is("[name='agingTo']") &&  parseInt(input.val()) <= parseInt(data_grid[len-1].agingFrom)) {
+                        	input.attr("data-agingToValidation-msg", "结束日期应该大于开始日期。");
+                        	return false;
+                        }
+        				return true;
+        			}
+    			}	
+            
+            	}
+        	}
+        }
+    
+});
+
+var grid = $("#grid").kendoGrid({
+    dataSource : dataSource,
+    navigatable: false,
+    height: '300',
+    weight: '180',
+    resizable: true,
+    scrollable: true,
+    selectable:"multiple,rowbox",
+    pageable: {
+        pageSizes: [5, 10, 20, 50],
+        refresh: true,
+        buttonCount: 5
+    },
+    sortable: true,
+    columns    : [
+        {
+            field: "lineNumber",
+            title: '序号',
+            attributes: {style: "text-align:center"},
+            headerAttributes: {
+                "class": "table-header-cell",
+                style  : "text-align: center"
+            },
+            width: 80
+        },
+        {
+            field: "stageName",
+            title: '账龄时段',
+            attributes: {style: "text-align:center"},
+            headerAttributes: {
+                "class": "table-header-cell",
+                style  : "text-align: center"
+            },
+            width: 80
+            
+        },
+        {
+            field: "agingFrom",
+            attributes: {style: "text-align:center"},
+            title: '账期从',
+            width: 100,
+            headerAttributes: {
+                "class": "table-header-cell",
+                style  : "text-align: center"
+            }
+          
+        }, {
+            field : "agingTo",
+            title : '账期至',
+            attributes: {style: "text-align:center"},
+            headerAttributes: {
+                "class": "table-header-cell",
+                style  : "text-align: center"
+            },
+            width : 100, 
+        }
+       ],
+        editable   : {createAt:"bottom"}
+}).data("kendoGrid");
+//自动根据当前屏幕大小调整表格
+Hap.autoResizeGrid("#grid");
+
+function addLineNumber(){
+	var data_grid = grid.dataSource.data();
+	console.log("data_gridr:",data_grid);
+	var len = data_grid.length;
+	if(addLineCount == 1){
+		data_grid[0].lineNumber = 1;
+	}else{
+		data_grid[len-1].lineNumber = data_grid[len-2].lineNumber+1;
+	}
+	grid.refresh();	
+	
+//	console.log("data_gridr:",data_grid.length);
+//	console.log("data_grid[0].lineNumber:",data_grid[0].lineNumber);
+}
+
+$("#save-btn").click(function(){
+	var aging_info = viewModel.model.toJSON();
+	
+//	console.log("aging_info",aging_info);
+	
+	if(aging_info.enableFlag == true){
+		aging_info.enableFlag = 'Y';
+	}
+	
+	if(aging_info.enableFlag == false){
+		aging_info.enableFlag = 'N';
+	}
+	
+//	console.log("aging_info",aging_info);
+	
+	var agingLinesList = [];
+	var data_aging = dataSource.data();
+	var len = data_aging.length-1;
+	
+	if(addLineCount != 0){
+		for (var i = addLineCount-1; i>=0; i--) {
+        	agingLinesList.push({
+        		lineNumber: data_aging[i].lineNumber,
+        		stageName : data_aging[i].stageName,
+        		agingFrom: data_aging[i].agingFrom,
+        		agingTo : data_aging[i].agingTo,
+                __status: 'add',
+            });
+		}
+	}
+	
+	aging_info.agingLinesList = agingLinesList;
+	
+//	console.log("aging_info.agingLinesList",aging_info.agingLinesList);
+	
+	$.ajax({
+		url: '${base.contextPath}/calculation/agingHeaders/insert',
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: kendo.stringify([aging_info]),
+            success: function (json) {
+            	addLineCount = 0;
+            	viewModel.model.set("agingName",null);
+            	viewModel.model.set("enableFlag","");
+            	viewModel.model.set("description","");
+            	$('#grid').data('kendoGrid').cancelChanges();
+                if (json.success) {
+                	
+                    kendo.ui.showInfoDialog({
+                        title: $l('hap.tip.info'),
+                        message: "数据添加成功！"
+                    }).done(function (event) {
+  	 		            if (event.button == 'OK') {
+                    		var data_grid = dataSource.data();
+            				tableLen = data_grid.length;
+  	 		            }
+                    })
+
+                } else {
+                    kendo.ui.showErrorDialog({
+                        title: $l('hap.error'),
+                        message: json.message
+                    });
+                }
+            }
+	});
+	
+})
+
+</script>
+</body>
+</html>

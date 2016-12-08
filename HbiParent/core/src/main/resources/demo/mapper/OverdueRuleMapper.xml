@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hbi.core.demo.mapper.OverdueRuleMapper">
+
+<resultMap type="hbi.core.demo.dto.OverdueRule" id="BaseResultMap" extends="com.hand.hap.mapper.StdMapper.STD">
+	<result column="RULE_ID" property="ruleId" jdbcType="DECIMAL"/>
+	<result column="RULE_NAME" property="ruleName" jdbcType="VARCHAR"/>
+	<result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
+	<result column="ACC_ENTITY_ID" property="accEntityId" jdbcType="DECIMAL"/>
+	<result column="DOC_TYPE" property="docType" jdbcType="VARCHAR"/>
+	<result column="FREQUENCY" property="frequency" jdbcType="VARCHAR"/>
+	<result column="PECENT" property="pecent" javaType="BIGDECIMAL"/>
+	<result column="PROGRAM_ID" property="programId" jdbcType="DECIMAL"/>
+	<result column="REQUEST_ID" property="requestId" jdbcType="DECIMAL"/>
+	<result column="OBJECT_VERSION_NUMBER" property="objectVersionNumber" jdbcType="DECIMAL"/>
+	<result column="CREATION_DATE" property="creationDate" javaType="DATE"/>
+	<result column="CREATED_BY" property="createdBy" jdbcType="DECIMAL"/>
+	<result column="LAST_UPDATED_BY" property="lastUpdatedBy" jdbcType="DECIMAL"/>
+	<result column="LAST_UPDATE_DATE" property="lastUpdateDate" javaType="DATE"/>
+	<result column="LAST_UPDATE_LOGIN" property="lastUpdateLogin" jdbcType="DECIMAL"/>
+	<result column="ENTITY_NAME" property="entityName" jdbcType="VARCHAR"/>
+</resultMap>
+
+<resultMap type="hbi.core.demo.dto.Entites" id="EntityResultMap">
+	<result column="ENTITY_ID" property="entityId" jdbcType="DECIMAL"/>
+	<result column="ENTITY_NAME" property="entityName" jdbcType="VARCHAR"/>
+</resultMap>
+
+<sql id="Base_Column_List">
+	RULE_ID,RULE_NAME,DESCRIPTION,ACC_ENTITY_ID,DOC_TYPE,FREQUENCY,PECENT,PROGRAM_ID,REQUEST_ID,
+	OBJECT_VERSION_NUMBER,CREATION_DATE,CREATED_BY,LAST_UPDATED_BY,LAST_UPDATE_DATE,LAST_UPDATE_LOGIN,ENTITY_NAME
+</sql>
+
+<select id="selectEntites" parameterType="hbi.core.demo.dto.Entites" resultMap="EntityResultMap">
+	select ENTITY_ID,ENTITY_NAME
+	from hcs_md_entites
+	<where>
+		<if test="entityId != null">
+		 	and ENTITY_ID=#{entityId,jdbcType=DECIMAL}
+		</if>
+		<if test="entityName != null">
+		 	and ENTITY_NAME=#{entityName,jdbcType=VARCHAR}
+		</if>
+	</where>
+</select>
+
+<select id="selectRuleName" parameterType="hbi.core.demo.dto.OverdueRule" resultMap="BaseResultMap">
+	select * from hcs_ca_overdue_rule
+	where RULE_NAME=#{ruleName,jdbcType=VARCHAR}
+</select>
+
+<select id="selectByOverdueRule" resultMap="BaseResultMap" parameterType="hbi.core.demo.dto.OverdueRule">
+	select 
+	b.RULE_ID,b.RULE_NAME,b.DESCRIPTION,b.ACC_ENTITY_ID,b.DOC_TYPE,b.FREQUENCY,b.PECENT,b.PROGRAM_ID,b.REQUEST_ID,
+	b.OBJECT_VERSION_NUMBER,b.CREATION_DATE,b.CREATED_BY,b.LAST_UPDATED_BY,b.LAST_UPDATE_DATE,b.LAST_UPDATE_LOGIN,e.ENTITY_NAME
+	from HCS_CA_OVERDUE_RULE b left join hcs_md_entites e on (b.ACC_ENTITY_ID = e.ENTITY_ID)
+	<where>
+		
+		<if test="ruleId != null">
+			and RULE_ID = #{ruleId,jdbcType=DECIMAL}
+		</if>
+		<if test="ruleName != null">
+			and RULE_NAME like #{ruleName,jdbcType=VARCHAR}
+		</if>
+		<if test="accEntityId != null">
+			and ACC_ENTITY_ID = #{accEntityId,jdbcType=DECIMAL}
+		</if>
+		<if test="docType != null">
+			and DOC_TYPE like #{docType,jdbcType=VARCHAR}
+		</if>
+		
+	</where>
+	order by b.RULE_ID
+</select>
+
+<insert id="insertOverdueRule" parameterType="hbi.core.demo.dto.OverdueRule">
+	insert into HCS_CA_OVERDUE_RULE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ruleId != null">
+			RULE_ID,
+		</if>
+		<if test="description != null">
+			DESCRIPTION,
+		</if>
+		<if test="ruleName != null">
+			RULE_NAME,
+		</if>
+		<if test="accEntityId != null">
+			ACC_ENTITY_ID,
+		</if>
+		<if test="docType != null">
+			DOC_TYPE,
+		</if>
+		<if test="frequency != null">
+			FREQUENCY,
+		</if>
+		<if test="pecent != null">
+			PECENT,
+		</if>
+		<if test="programId != null">
+			PROGRAM_ID,
+		</if>
+		<if test="requestId != null">
+			REQUEST_ID,
+		</if>
+		<if test="objectVersionNumber != null">
+			OBJECT_VERSION_NUMBER,
+		</if>
+		<if test="creationDate != null">
+			CREATION_DATE,
+		</if>
+		<if test="createdBy != null">
+			CREATED_BY,
+		</if>
+		<if test="lastUpdatedBy != null">
+			LAST_UPDATED_BY,
+		</if>
+		<if test="lastUpdateDate != null">
+			LAST_UPDATE_DATE,
+		</if>
+		<if test="lastUpdateLogin != null">
+			LAST_UPDATE_LOGIN
+		</if>
+	</trim>
+	<trim prefix=" values (" suffix=")" suffixOverrides=",">
+		<if test="ruleId != null">
+			#{ruleId,jdbcType=DECIMAL},
+		</if>
+		<if test="ruleName != null">
+			#{ruleName,jdbcType=VARCHAR},
+		</if>
+		<if test="description != null">
+			#{description,jdbcType=VARCHAR},
+		</if>
+		<if test="accEntityId != null">
+			#{accEntityId,jdbcType=DECIMAL},
+		</if>
+		<if test="docType != null">
+			#{docType,jdbcType=VARCHAR},
+		</if>
+		<if test="frequency != null">
+			#{frequency,jdbcType=VARCHAR},
+		</if>
+		<if test="pecent != null">
+			#{pecent,javaType=BIGDECIMAL},
+		</if>
+		<if test="programId != null">
+			#{programId,jdbcType=DECIMAL},
+		</if>
+		<if test="requestId != null">
+			#{requestId,jdbcType=DECIMAL},
+		</if>
+		<if test="objectVersionNumber != null">
+			#{objectVersionNumber,jdbcType=DECIMAL},
+		</if>
+		<if test="creationDate != null">
+			#{creationDate,jdbcType=DATE},
+		</if>
+		<if test="createdBy != null">
+			#{createdBy,jdbcType=DECIMAL},
+		</if>
+		<if test="lastUpdatedBy != null">
+			#{lastUpdatedBy,jdbcType=DECIMAL},
+		</if>
+		<if test="lastUpdateDate != null">
+			#{lastUpdateDate,jdbcType=DATE},
+		</if>
+		<if test="lastUpdateLogin != null">
+			#{lastUpdateLogin,jdbcType=DECIMAL}
+		</if>
+	</trim>
+</insert>
+
+<update id="updateOverdueRule" parameterType="hbi.core.demo.dto.OverdueRule">
+	update HCS_CA_OVERDUE_RULE
+	<set>
+		<if test="ruleId != null">
+			RULE_ID=#{ruleId,jdbcType=DECIMAL},
+		</if>
+		<if test="ruleName != null">
+			RULE_NAME=#{ruleName,jdbcType=VARCHAR},
+		</if>
+		<if test="accEntityId != null">
+			ACC_ENTITY_ID=#{accEntityId,jdbcType=DECIMAL},
+		</if>
+		<if test="docType != null">
+			DOC_TYPE=#{docType,jdbcType=VARCHAR},
+		</if>
+		<if test="frequency != null">
+			FREQUENCY=#{frequency,jdbcType=VARCHAR},
+		</if>
+		<if test="pecent != null">
+			PECENT=#{pecent,javaType=BIGDECIMAL},
+		</if>
+	</set>
+	where RULE_ID=#{ruleId,jdbcType=DECIMAL}
+</update>
+
+<delete id="deleteOverdueRule" parameterType="hbi.core.demo.dto.OverdueRule">
+	delete from HCS_CA_OVERDUE_RULE
+	<where>
+		<if test="ruleId != null">
+			and RULE_ID=#{ruleId,jdbcType=DECIMAL}
+		</if>
+		<if test="ruleName != null">
+			and RULE_NAME=#{ruleName,jdbcType=VARCHAR}
+		</if>
+	</where>
+	
+</delete>
+</mapper>

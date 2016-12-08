@@ -1,0 +1,562 @@
+<#include "../include/header.html">
+<meta charset="UTF-8">
+<body>
+
+<div id="dialog"></div>
+
+	<div id="page-l" class="pull left" style="float:left;width=9%;"></div>
+	
+<div id="page-content">
+	<h3><b>账龄配置</b></h3>
+	<div id="page-r" style="width:90%;float:right;">
+	<div style="width:5%;height:400px;float:left;"></div>
+	<div style="width:5%;height:400px;float:right;"></div>
+	<div id="content" class="pull right" style="float:right;width:90%;">
+	<div id="page-form" class="pull right" style="width:90%;">
+	
+	<div id="query-form">
+		<div class="con-sm-12">
+			<div style="float:left">
+				<label style="float:left;margin-right:20px;">标题</label>
+				<select id="title"  data-value-primitive="true" data-bind="value:model.agingHeaderId" placeholder='请选择标题'  style="width:200px;"></select>	
+			</div>
+				<label style="margin-left:50px;margin-right:50px;"></label>
+				<input type="checkbox" id="enableFlag" data-bind="checked:model.enableFlag" style="margin-right:10px;">
+				<label style="margin-right:5px;">启用</label>		
+		</div>
+		<br>
+		<div class="con-sm-12" style="float:left">
+			<label style="float:left;margin-right:20px;" >说明</label>
+			<input type="text" id="description" oninput="inputText()" data-bind="value:model.description" style="width:300px;">
+		</div>
+		<br>
+		<div class="col-sm-12">
+			<span class="btn btn-primary" style="float:right; margin-bottom:10px;width:100px;margin-left:10px;" data-bind="click:queryFunction">查询</span>
+			<span class="btn btn-danger" onclick="deleteData()" style="float:right;margin-right:10px;width:100px;">删除</span>
+		</div>
+	</div>
+	
+		<div class="pull right" id="toolbar-btn">
+			<br><br>
+			<div class="col-sm-12">
+			<button class="btn btn-primary k-grid-add" disabled="disabled" id="addLine" data-bind="click:addRowFunction" style="float:left;width:100px;" >新增行</button>
+			<span class="btn btn-primary k-grid-add" onclick="editData()" style="float:right;margin-left:10px;width:100px;" >新建</span>
+			<span class="btn btn-success k-grid-save-changes" id="save-btn" data-bind="click:saveFunction" style="float:right;margin-right:10px;width:100px;" >保存</span>
+			<br><br>
+			</div>
+		</div>
+	</div>		
+	<div style="clear:both"></div>
+	<div style="clear:both">
+		<div id="grid"></div>
+	</div>
+	</div>
+	</div>
+</div>
+<div id="container"></div>	
+
+
+<script type="text/javascript">
+
+var viewModel = kendo.observable({
+    model: {},
+    addRowFunction: function(){
+    	$('#grid').data('kendoGrid').addRow();
+    	addLineNumber();
+        
+    },
+    createFunction: function(){
+        
+    },
+    saveFunction: function(){
+    	if(!viewModel.model.agingHeaderId){
+    		kendo.ui.showErrorDialog({
+    			title: $l('hap.error'),
+    			message: "请选择标题"
+    		});
+    	}; 	
+        $('#grid').data('kendoGrid').saveChanges();
+    },
+    queryFunction: function (e) {
+    	var grid = $('#grid').data('kendoGrid');
+    	grid.setDataSource(dataSource);
+    	grid.dataSource.page(1);
+    },
+    resetFunction: function (e) {
+    	var formData = viewModel.model.toJSON();
+        for ( var k in formData) {
+            viewModel.model.set(k, null);
+        }
+    }
+});
+
+kendo.bind($('#page-content'), viewModel);
+
+$('#query-form input').keydown(function (e) {
+    if (e.keyCode == 13) {
+        e.target.blur();
+        viewModel.queryFunction(e);
+    }
+});
+
+function deleteData(){
+	if(!viewModel.model.agingHeaderId){
+		kendo.ui.showErrorDialog({
+			title:$l("hap.error"),
+			message:"未选择标题"
+		});
+	}else{
+		var aging_info = viewModel.model.toJSON();
+		
+		if(aging_info.enableFlag == true){
+			aging_info.enableFlag = 'Y';
+		}
+		
+		if(aging_info.enableFlag == false){
+			aging_info.enableFlag = 'N';
+		}
+		
+		var checked = grid.selectedDataItems();
+		var len = grid.dataSource.data().length;
+		
+		if(len != 0 && checked.length == 0){
+			kendo.ui.showConfirmDialog({
+				title:$l('hap.tip.info'),
+				message:"请选择要删除内容。"
+			})
+		}else{
+			var agingLinesList = new Array();
+			
+			kendo.ui.showConfirmDialog({
+				title:$l('hap.tip.info'),
+	        	message:len==0 ? "要删除标题吗？" : $l('hap.tip.delete_confirm')
+			}).done(function(event){
+				if(event.button == 'OK'){
+					
+					if(len){
+						$.each(checked,function(i,v){
+				            grid.dataSource.remove(v);
+				            tableLen--;
+				            agingLinesList.push({
+				        		agingHeaderId: aging_info.agingHeaderId,
+				        		lineNumber: v.lineNumber,
+				        		stageName : v.stageName,
+				        		agingFrom: v.agingFrom,
+				        		agingTo : v.agingTo,
+				            });
+				        });
+					}
+					aging_info.agingLinesList = agingLinesList;
+					console.log("aging_info.agingLinesList",aging_info.agingLinesList);
+					
+		//			var curBaseUrl = '$(baseContentPath)'+"/calculation/agingHeaders";
+				    $.ajax({
+						url      : '${base.contextPath}/calculation/agingHeaders/delete',
+						type     : "POST",
+						dataType : 'json',
+						contentType:"application/json;charset=utf-8",
+						data     :kendo.stringify([aging_info]),
+						success  :function(json){
+							
+							if(json.success){
+								kendo.ui.showInfoDialog({
+									title: $l('hap.tip.info'),
+	                                message: $l('hap.success')
+								}).done(function(event){
+									if(event.button == "OK"){
+										if(len==0){
+											location.reload();
+										//	$("#title").data('kendoComboBox').select(-1);
+										//	viewModel.model.set("description","");
+									   // 	viewModel.model.set("enableFlag","");
+									   // 	$("#title").data('kendoComboBox').refresh();
+										}	
+									}
+								})
+							}else{
+								kendo.ui.showErrorDialog({
+	                                  title: $l('hap.error'),
+	                                  message: json.message
+	                              });
+							}		
+						}
+					});
+				}
+				
+			})
+		}
+			
+	}
+}
+
+
+//新建时调用的界面,全局函数
+window.editData = function(){
+    var url = 'aging_conf_edit.html';
+    //查找 dialog 元素，初始化为一个window界面
+    var dialog =  $("#dialog").kendoWindow({
+        actions: [ "Maximize", "Minimize", "Close"],
+        width: 900,
+        height: 500,
+        title: '<@spring.message "hap.edit"/>',
+        content: url,
+        iframe:  true,
+        visible: false,
+        modal:true,
+        close: function() {
+            //window 关闭时，  刷新 本页面的  grid
+            location.reload();
+        }
+    }).data("kendoWindow");
+    dialog.center().open();
+};
+
+
+
+$(document).ready(function(){
+	
+})
+
+window.tableLen = 0;
+
+//创建一个数据源
+var crudServiceBaseUrl = '${base.contextPath}'+'/calculation/aging',
+    dataSource = new kendo.data.DataSource({
+        transport : {
+            read : {
+                url     : crudServiceBaseUrl +  "/query",
+                type    : "POST",
+                //contentType: "application/json",
+                dataType: "json"
+                
+            },
+            create : {
+                url        : crudServiceBaseUrl + "/submit",
+                contentType: "application/json",
+                type       : "POST"
+            },
+            update: {
+                url: crudServiceBaseUrl + "/submit",
+                contentType: "application/json",
+                type: "POST"
+            },
+            destroy: {
+                url: crudServiceBaseUrl + "/delete",
+                contentType: "application/json",
+                type: "POST"
+            },   
+            parameterMap: function (options, type) {
+               if (type !== "read" && options.models) {
+                    var datas = Hap.prepareSubmitParameter(options, type);
+                    return kendo.stringify(datas);
+                } else if (type === "read") {
+                    return Hap.prepareQueryParameter(viewModel.model.toJSON(), options);
+                }
+            }
+        },
+        batch       : true,
+        serverPaging: true,
+        serverSorting: true,
+        pageSize    : 10,
+        schema      : {
+            data  : 'rows',
+            total : 'total',
+            model : {
+                id    : "agingHeaderId",
+                fields: {
+                	agingHeaderId : {type:"long"},
+                	lineNumber : {type: "long",editable:false},
+                    stageName : {type: "string",validation: { required: true}},
+                    agingFrom : {type: "long",
+                    	validation:{ 
+            			agingFromValidation: function (input) {
+            				var data_grid = dataSource.data();
+            				len = data_grid.length;
+            				if(1 == len){
+                                if (input.is("[name='agingFrom']") && input.val() != 1) {
+                                	input.attr("data-agingFromValidation-msg", "第一个账龄应该从1开始。");
+                                	return false;
+                                }
+            				}else{
+                                if (input.is("[name='agingFrom']") && input.val() != parseInt(data_grid[len-2].agingTo)+1) {
+                                	input.attr("data-agingFromValidation-msg", "两个账龄字段间不该有间隔。");
+                                	
+                                	return false;
+                                }	
+            				}
+            				return true;
+            			}
+        			}},
+                    agingTo : {type: "long",validation:{ 
+            			agingToValidation: function (input) {
+            				var data_grid = dataSource.data();
+            				len = data_grid.length;
+            				
+                            if (input.is("[name='agingTo']") &&  parseInt(input.val()) <= parseInt(data_grid[len-1].agingFrom)) {
+                            	input.attr("data-agingToValidation-msg", "结束日期应该大于开始日期。");
+                            	return false;
+                            }
+            				return true;
+            			}
+        			}
+        			}
+                }
+            }
+        }
+});
+
+var grid = $("#grid").kendoGrid({
+//	    dataSource : dataSource,
+	    navigatable: false,
+	    height: '300',
+	    weight: '180',
+	    resizable: true,
+	    scrollable: true,
+	    selectable:"multiple,rowbox",
+	    pageable: {
+	        pageSizes: [5, 10, 20, 50],
+	        refresh: true,
+	        buttonCount: 5
+	    },
+	    sortable: true,
+	    columns    : [
+	        {
+	            field: "lineNumber",
+	            title: '序号',
+	            attributes: {style: "text-align:center"},
+	            headerAttributes: {
+	                "class": "table-header-cell",
+	                style  : "text-align: center"
+	            },
+	            width: 80
+	            
+	        },
+	        {
+	            field: "stageName",
+	            title: '账龄时段',
+	            attributes: {style: "text-align:center"},
+	            headerAttributes: {
+	                "class": "table-header-cell",
+	                style  : "text-align: center"
+	            },
+	            width: 80
+	            
+	        },
+	        {
+	            field: "agingFrom",
+	            attributes: {style: "text-align:center"},
+	            title: '账期从',
+	            width: 100,
+	            headerAttributes: {
+	                "class": "table-header-cell",
+	                style  : "text-align: center"
+	            },
+	            editor: function(container,options){
+	            	$('<input id="agingForm" name="'+options.field+'"type="text" value="'+options.model.agingForm+'" class="k-textbox" style="width:100%;">')
+	            	.appendTo(container);
+	            	if(options.model.agingForm){
+	            		$("agingForm").attr("disabled",true);
+	            		document.getElementById('agingFrom').style.backgroundColor = "GhostWhite";
+	            	}
+	            }
+	        }, {
+	            field : "agingTo",
+	            title : '账期至',
+	            attributes: {style: "text-align:center"},
+	            headerAttributes: {
+	                "class": "table-header-cell",
+	                style  : "text-align: center"
+	            },
+	            width : 100, 
+	            editor: function(container,options){
+	            	$('<input id="agingTo" name="'+options.field+'"type="text" value="'+options.model.agingTo+'" class="k-textbox" style="width:100%;">')
+	            	.appendTo(container);
+	            	if(options.model.agingForm){
+	            		$("agingTo").attr("disabled",true);
+	            		document.getElementById('agingTo').style.backgroundColor = "GhostWhite";
+	            	}
+	            }
+	        },
+	       
+	       ],
+	        editable   : { createAt: "bottom"}
+	}).data("kendoGrid");
+	//自动根据当前屏幕大小调整表格
+	Hap.autoResizeGrid("#grid");
+	
+	function inputText(){
+		isReload = true;
+	}
+	
+	
+		var myData = new Array();
+		
+		function myDataToJson(data) {
+			this.agingName = data.agingName;
+			this.agingHeaderId = data.agingHeaderId;
+			this.description = data.description;
+			this.enableFlag = data.enableFlag;
+		}
+		
+		$.ajax({
+			url : '${base.contextPath}/calculation/aging/queryAgingName',
+			type : 'POST',
+			contentType : "application/json;charset=utf-8",
+			cache : false,
+			dataType : 'json',
+			async : false,
+			success : function(data) {
+				for (var i = 0; i < data.rows.length; i++) {
+					myData.push(new myDataToJson(data.rows[i]));
+				}
+			}
+		});
+	
+	$("#title").kendoComboBox({
+	    dataTextField:"agingName",         
+	    dataValueField:"agingHeaderId",       
+	    animation: {
+	        close: {
+	            effects: "fadeOut zoom:out",
+	            duration: 300
+	        },
+	        open: {
+	        	
+	            effects: "fadeIn zoom:in",
+	            duration: 300
+	        }
+	    },
+	    open: function(){
+	    	$("#title").data('kendoComboBox').refresh();
+	    },
+	    change: function(){
+	    	setTimeout(
+		    		function(){
+		    			var gridData = dataSource.data();
+			    		tableLen = gridData.length;
+		    		},1000);
+		    $("#addLine").attr("disabled","disabled");
+		    
+		    var flag = false;
+		    var index = -1;
+		    for(var i=0; i<myData.length; i++){
+		    	if($("#title").val() == myData[i].agingHeaderId){
+		    		flag = true;
+		    		index = i;
+		    	}
+		    };
+		    if(flag){
+		    	viewModel.model.set("description",myData[index].description);
+		    	viewModel.model.set("enableFlag",myData[index].enableFlag);
+		    	if(myData[index].enableFlag == "Y")
+		    		$("#enableFlag").attr("checked","true");
+		    	else
+		    		$("#enableFlag").removeAttr("checked");
+		    	grid.setDataSource(dataSource);
+		    	$("#addLine").removeAttr("disabled");
+		    }else{
+		    	viewModel.model.set("description","");
+		    	viewModel.model.set("enableFlag","");
+		    	grid.setDataSource(new kendo.data.DataSource());
+		    };
+	    },
+	    dataSource:myData	
+	}).data("kendoComboBox");
+	
+	function addLineNumber(){
+		var data_grid = dataSource.data();
+//		console.log("data_gridr:",data_grid);
+		var len = data_grid.length;
+//		console.log("data_gridr.length:",data_grid.length);
+//		console.log("tableLen:",tableLen);
+		if(len == 1){
+			data_grid[0].lineNumber = 1;
+		}else{
+			data_grid[len-1].lineNumber = data_grid[len-2].lineNumber+1;
+			grid.refresh();
+		}
+//		console.log("data_grid[len-1].lineNumber:",data_grid[len-1].lineNumber);
+	}
+	
+	
+	
+	$("#save-btn").click(function(){
+		var aging_info = viewModel.model.toJSON();
+		
+//		console.log("aging_info",aging_info);
+		
+		if(aging_info.enableFlag == true){
+			aging_info.enableFlag = 'Y';
+		}
+		
+		if(aging_info.enableFlag == false){
+			aging_info.enableFlag = 'N';
+		}
+		
+		var agingLinesList = new Array();
+		var data_aging = dataSource.data();
+		var len = data_aging.length;
+		var addLineCount = len-tableLen;
+		
+//		console.log("tableLen",tableLen);
+//		console.log("addLineCount",addLineCount);
+//		console.log("data_aging",data_aging);
+		
+		if(addLineCount != 0){
+    		for (var i = len-1; i>=tableLen; i--) {
+            	agingLinesList.push({
+            		agingHeaderId: aging_info.agingHeaderId,
+            		lineNumber: data_aging[i].lineNumber,
+            		stageName : data_aging[i].stageName,
+            		agingFrom: data_aging[i].agingFrom,
+            		agingTo : data_aging[i].agingTo,
+                    __status: 'add',
+                });
+    		}
+//   		console.log("agingLinesList",agingLinesList);
+    	}
+		
+		aging_info.agingLinesList = agingLinesList;
+		
+//		console.log("kendo.stringify([aging_info])",kendo.stringify([aging_info]));
+		
+//		console.log("aging_info.agingLinesList",aging_info.agingLinesList);
+		$.ajax({
+			url: '${base.contextPath}/calculation/agingHeaders/insertAging',
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: kendo.stringify([aging_info]),
+                success: function (json) {
+                    if (json.success) {
+                        kendo.ui.showInfoDialog({
+                            title: $l('hap.tip.info'),
+                            message: "数据保存成功！"
+                        }).done(function (event) {
+      	 		            if (event.button == 'OK') {
+                        		var data_grid = dataSource.data();
+                				tableLen = data_grid.length;
+                				
+                				console.log("tableLen",tableLen);
+      	                   /* 	if(isReload){
+      	                    		location.reload(true);
+      	                    		isReload = false;                  		
+      	                    	}*/
+      	 		            }
+                        })
+
+                    } else {
+                        kendo.ui.showErrorDialog({
+                            title: $l('hap.error'),
+                            message: json.message
+                        });
+                    }
+                }
+		});
+		
+	})
+
+	
+</script>
+</body>
+</html>

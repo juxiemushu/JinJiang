@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hbi.core.demo.mapper.AgingHeadersMapper">
+
+    <resultMap id="BaseResultMap" type="hbi.core.demo.dto.AgingHeaders" extends="com.hand.hap.mapper.StdMapper.STD">
+        <result column="AGING_HEADER_ID" property="agingHeaderId" jdbcType="DECIMAL"/>
+        <result column="AGING_NAME" property="agingName" jdbcType="VARCHAR"/>
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
+        <result column="ENABLE_FLAG" property="enableFlag" jdbcType="VARCHAR"/>
+        <result column="CREATION_DATE" property="creationDate" jdbcType="DATE"/>
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="DATE"/>
+        <result column="CREATED_BY" property="createdBy" jdbcType="DECIMAL"/>
+        <result column="LAST_UPDATED_BY" property="lastUpdatedBy" jdbcType="DECIMAL"/>
+    </resultMap>
+    
+    <select id="selectByName" parameterType="hbi.core.demo.dto.AgingHeaders" resultMap="BaseResultMap">
+    	select * from hcs_ca_aging_headers
+    	where AGING_NAME = #{agingName,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="selectAgingHeaders" parameterType="hbi.core.demo.dto.AgingHeaders" resultMap="BaseResultMap">
+    	select AGING_NAME,AGING_HEADER_ID,DESCRIPTION,ENABLE_FLAG
+    	from HCS_CA_AGING_HEADERS
+    </select>
+    
+	<insert id="insertAgingHeaders" parameterType="hbi.core.demo.dto.AgingHeaders">
+    <!--	<selectKey resultType="Long" keyProperty="agingHeaderId" order="AFTER">
+	        SELECT LAST_INSERT_ID() 
+	    </selectKey>  --> 
+	    	INSERT INTO hcs_ca_aging_headers
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="agingName != null" >
+				AGING_NAME,
+			</if>
+			<if test="description != null" >
+				DESCRIPTION,
+			</if>
+			<if test="enableFlag != null" >
+				ENABLE_FLAG,
+			</if>
+			<if test="createdBy != null" >
+				CREATED_BY,
+			</if>
+			<if test="lastUpdatedBy != null" >
+				LAST_UPDATED_BY,
+			</if>
+				CREATION_DATE,
+				LAST_UPDATE_DATE,
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="agingName != null" >
+				#{agingName,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null" >
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="enableFlag != null" >
+				#{enableFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="createdBy != null" >
+				#{createdBy,jdbcType=DECIMAL},
+			</if>
+			<if test="lastUpdatedBy != null" >
+				#{lastUpdatedBy,jdbcType=DECIMAL},
+			</if>
+				sysdate,sysdate,
+	    </trim>
+    </insert>
+    
+    <update id="updateAgingHeaders" parameterType="hbi.core.demo.dto.AgingHeaders" >
+		update hcs_ca_aging_headers
+		<set >
+			<if test="agingName != null" >
+				AGING_NAME = #{agingName,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null" >
+				DESCRIPTION = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="enableFlag != null">
+				ENABLE_FLAG = #{enableFlag,jdbcType=VARCHAR},
+			</if>
+				LAST_UPDATE_DATE = sysdate,
+		</set>
+		where AGING_HEADER_ID = #{agingHeaderId,jdbcType=DECIMAL}
+	</update>
+    
+    <delete id="deleteAgingHeaders" parameterType="hbi.core.demo.dto.AgingHeaders" >
+		delete from hcs_ca_aging_headers
+		where AGING_HEADER_ID= #{agingHeaderId,jdbcType=DECIMAL}
+	</delete>
+</mapper>

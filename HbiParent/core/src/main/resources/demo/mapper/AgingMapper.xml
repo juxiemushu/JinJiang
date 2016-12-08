@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hbi.core.demo.mapper.AgingMapper">
+
+    <resultMap id="BaseResultMap" type="hbi.core.demo.dto.Aging" extends="com.hand.hap.mapper.StdMapper.STD">
+        <result column="AGING_HEADER_ID" property="agingHeaderId" jdbcType="DECIMAL"/>
+        <result column="AGING_NAME" property="agingName" jdbcType="VARCHAR"/>
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
+        <result column="ENABLE_FLAG" property="enableFlag" jdbcType="VARCHAR"/>
+        <result column="AGING_LINE_ID" property="agingLineId" jdbcType="DECIMAL"/>
+        <result column="LINE_NUMBER" property="lineNumber" jdbcType="DECIMAL"/>
+        <result column="STAGE_NAME" property="stageName" jdbcType="VARCHAR"/>
+        <result column="AGING_FROM" property="agingFrom" jdbcType="DECIMAL"/>
+        <result column="AGING_TO" property="agingTo" jdbcType="DECIMAL"/>
+        <result column="CREATION_DATE" property="creationDate" jdbcType="DATE"/>
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="DATE"/>
+    </resultMap>
+	
+	<select id="selectByAging" parameterType="hbi.core.demo.dto.Aging" resultMap="BaseResultMap">
+		SELECT h.AGING_HEADER_ID,h.AGING_NAME,h.DESCRIPTION,h.ENABLE_FLAG,l.LINE_NUMBER,l.STAGE_NAME,l.AGING_FROM,l.AGING_TO
+		FROM hcs_ca_aging_headers h,hcs_ca_aging_lines l
+		<where>
+			h.AGING_HEADER_ID = l.AGING_HEADER_ID
+			<if test="agingHeaderId != null">
+                AND h.AGING_HEADER_ID = #{agingHeaderId,jdbcType=DECIMAL}
+            </if>
+            <if test="agingName != null">
+                AND h.AGING_NAME like #{agingName,jdbcType=VARCHAR}
+            </if>
+            <if test="description != null">
+                AND h.DESCRIPTION like #{description,jdbcType=VARCHAR}
+            </if>
+            <if test="enableFlag != null">
+                AND h.ENABLE_FLAG like #{enableFlag,jdbcType=VARCHAR}
+            </if>
+        	<if test="lineNumber != null">
+                AND l.LINE_NUMBER = #{lineNumber,jdbcType=DECIMAL}
+            </if>            
+            <if test="stageName != null">
+                AND l.STAGE_NAME like #{stageName,jdbcType=VARCHAR}
+            </if>
+            <if test="agingFrom != null">
+                AND l.AGING_FROM = #{agingFrom,jdbcType=DECIMAL}
+            </if>            
+            <if test="agingTo != null">
+                AND l.AGING_TO = #{agingTo,jdbcType=DECIMAL}
+            </if>
+        </where>
+        order by l.LINE_NUMBER
+    </select>
+    
+    <select id="selectByAgingName" parameterType="hbi.core.demo.dto.Aging" resultMap="BaseResultMap">
+		SELECT AGING_NAME,AGING_HEADER_ID,DESCRIPTION,ENABLE_FLAG
+		  FROM hcs_ca_aging_headers
+    </select>
+    
+</mapper>
