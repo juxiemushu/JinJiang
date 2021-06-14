@@ -1,1 +1,133 @@
-<mxfile host="app.diagrams.net" modified="2021-06-14T10:38:09.599Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" version="14.7.2" etag="IwdyU5UBiPEPL7ZYMF3z" type="github"><diagram id="LaZ4LPzViRxvwcxVOZUD">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-06-14T11:08:34.050Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" etag="_RgVj4pKld9zSIEq1dLZ" version="14.7.2" type="github">
+  <diagram id="LaZ4LPzViRxvwcxVOZUD" name="Page-1">
+    <mxGraphModel dx="1527" dy="981" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VVcKoFAnlxs-F5v892AC-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-1" target="VVcKoFAnlxs-F5v892AC-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="110" y="215" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-2" target="VVcKoFAnlxs-F5v892AC-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-2" value="消息通知初始化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="200" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-4" target="VVcKoFAnlxs-F5v892AC-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-4" value="消息发送器初始化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="680" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-5" target="VVcKoFAnlxs-F5v892AC-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-5" value="消息内容填充" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="840" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-6" target="VVcKoFAnlxs-F5v892AC-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-6" value="获取收件人信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-7" target="VVcKoFAnlxs-F5v892AC-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-7" value="消息拦截机制（如疲劳度控制、订阅关系）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="354" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-8" target="VVcKoFAnlxs-F5v892AC-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-8" value="消息特殊处理（如消息延迟发放）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="520" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-9" target="VVcKoFAnlxs-F5v892AC-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-9" value="消息发送" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-10" target="VVcKoFAnlxs-F5v892AC-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-10" value="消息记录" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-11" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="215" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-22" value="&lt;font style=&quot;font-size: 14px&quot;&gt;消息通知&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry y="225" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-23" target="VVcKoFAnlxs-F5v892AC-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-23" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="110" y="460" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-24" target="VVcKoFAnlxs-F5v892AC-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-24" value="消息任务初始化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="200" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-29" target="VVcKoFAnlxs-F5v892AC-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-29" value="获取目标人群" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="360" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-31" target="VVcKoFAnlxs-F5v892AC-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-31" value="消息发送器初始化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="850" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-33" target="VVcKoFAnlxs-F5v892AC-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-33" value="消息内容填充" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-35" target="VVcKoFAnlxs-F5v892AC-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-35" value="获取收件人信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-37" target="VVcKoFAnlxs-F5v892AC-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-37" value="消息拦截机制（如疲劳度控制、订阅关系）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="520" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-39" target="VVcKoFAnlxs-F5v892AC-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-39" value="消息特殊处理（如消息延迟发放）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="690" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-41" target="VVcKoFAnlxs-F5v892AC-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-41" value="消息发送" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-43" target="VVcKoFAnlxs-F5v892AC-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-43" value="消息记录" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VVcKoFAnlxs-F5v892AC-44" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="1646" y="460" width="50" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
