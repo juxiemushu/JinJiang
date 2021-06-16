@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-06-15T14:21:18.703Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" etag="Ew8ZNdUXzfEawDdQd_fb" version="14.7.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-06-16T02:42:46.517Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" etag="WG-tZB9b7XNJqDXyLJbq" version="14.7.2" type="github">
   <diagram id="LaZ4LPzViRxvwcxVOZUD" name="Page-1">
-    <mxGraphModel dx="2577" dy="2037" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2354" dy="2150" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -37,13 +37,13 @@
         <mxCell id="VVcKoFAnlxs-F5v892AC-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-7" target="VVcKoFAnlxs-F5v892AC-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-7" value="消息拦截机制（如疲劳度控制、订阅关系）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-7" value="消息拦截机制（如疲劳度控制、订阅关系）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="830" y="210" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-8" target="VVcKoFAnlxs-F5v892AC-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-8" value="消息特殊处理（如消息延迟发放）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-8" value="消息特殊处理（如消息延迟发放）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="996" y="210" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-9" target="VVcKoFAnlxs-F5v892AC-10">
@@ -79,7 +79,7 @@
         <mxCell id="VVcKoFAnlxs-F5v892AC-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-29" target="VVcKoFAnlxs-F5v892AC-31">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-29" value="获取目标人群" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-29" value="获取目标人群" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="360" y="455" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-31" target="VVcKoFAnlxs-F5v892AC-33">
@@ -103,13 +103,13 @@
         <mxCell id="VVcKoFAnlxs-F5v892AC-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-37" target="VVcKoFAnlxs-F5v892AC-39">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-37" value="消息拦截机制（如疲劳度控制、订阅关系）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-37" value="消息拦截机制（如疲劳度控制、订阅关系）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="996" y="455" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-39" target="VVcKoFAnlxs-F5v892AC-41">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-39" value="消息特殊处理（如消息延迟发放）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-39" value="消息特殊处理（如消息延迟发放）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="1166" y="455" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-41" target="VVcKoFAnlxs-F5v892AC-43">
@@ -154,13 +154,13 @@
         <mxCell id="VVcKoFAnlxs-F5v892AC-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-89" target="VVcKoFAnlxs-F5v892AC-91">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-89" value="消息发送器初始化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-89" value="消息发送器初始化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="360" y="-480" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-91" target="VVcKoFAnlxs-F5v892AC-93">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-91" value="消息模板填充" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-91" value="消息模板填充" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="520" y="-480" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-93" target="VVcKoFAnlxs-F5v892AC-94">
@@ -168,7 +168,7 @@
             <mxPoint x="830" y="-449.9411764705883" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-93" value="获取收件人信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-93" value="获取收件人信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="680" y="-480" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-94" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#1A1A1A;" vertex="1" parent="1">
@@ -198,13 +198,13 @@
         <mxCell id="VVcKoFAnlxs-F5v892AC-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-99" target="VVcKoFAnlxs-F5v892AC-100">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-99" value="消息拦截机制（如疲劳度控制、订阅关系）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-99" value="消息拦截机制（如疲劳度控制、订阅关系）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;shadow=1;" vertex="1" parent="1">
           <mxGeometry x="676" y="-30" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-100" target="VVcKoFAnlxs-F5v892AC-101">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-100" value="消息特殊处理（如消息延迟发放）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-100" value="消息特殊处理（如消息延迟发放）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="842" y="-30" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="VVcKoFAnlxs-F5v892AC-114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-101" target="VVcKoFAnlxs-F5v892AC-102">
@@ -263,7 +263,7 @@
         <mxCell id="VVcKoFAnlxs-F5v892AC-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VVcKoFAnlxs-F5v892AC-134" target="VVcKoFAnlxs-F5v892AC-124">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VVcKoFAnlxs-F5v892AC-134" value="消息回执监听" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="VVcKoFAnlxs-F5v892AC-134" value="消息回执监听" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="200" y="-260" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
